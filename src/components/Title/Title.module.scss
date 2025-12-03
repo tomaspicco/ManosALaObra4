@@ -1,0 +1,17 @@
+@use "../../styles/variables" as v;
+
+.title {
+  font-family: "Roboto", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: center;
+
+  /* Por defecto (tema claro) texto negro */
+  color: v.color("negro");
+
+  /* Cuando el documento tenga data-theme='dark' aplicamos color blanco */
+  :global([data-theme="dark"]) & {
+    color: v.color("blanco");
+  }
+}

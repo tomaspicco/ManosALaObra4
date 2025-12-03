@@ -1,0 +1,80 @@
+@use "../../styles/variables" as v;
+
+.taskForm {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.5s ease, color 0.3s ease;
+  width: 50%;
+  margin: 0 auto;
+  align-self: center;
+  margin-bottom: v.size(2);
+  @media (max-width: 768px) {
+    width: 95%;
+    max-width: 60%;
+    margin-bottom: v.size(1);
+    min-height: v.size(6);
+  }
+  box-sizing: border-box;
+  padding: v.size(1);
+  gap: v.size(1);
+  position: sticky;
+  top: v.size(2);
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: v.radius("base");
+  background-color: color-mix(in srgb, #{v.color("negro-10")} 85%, transparent);
+  :global([data-theme="dark"]) & {
+    background-color: color-mix(
+      in srgb,
+      #{v.color("blanco-20")} 90%,
+      transparent
+    );
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+.input {
+  flex-grow: 1;
+  font-family: "Roboto", sans-serif;
+  font-size: v.size(3);
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  background-color: transparent;
+  border: 1px solid red;
+  color: var(--theme-text);
+  padding: v.size(0.5);
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px red;
+  }
+  &::placeholder {
+    color: var(--theme-text);
+    opacity: 0.5;
+  }
+}
+.Button {
+  background-color: transparent !important;
+  border: 1px solid black !important;
+  box-shadow: none !important;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: v.size(5);
+  height: v.size(5);
+  @media (max-width: 768px) {
+    width: v.size(4);
+    height: v.size(4);
+  }
+  color: var(--theme-text);
+  :global([data-theme="dark"]) & img {
+    filter: invert(1);
+  }
+  :global([data-theme="dark"]) & span {
+    color: var(--theme-text);
+  }
+}

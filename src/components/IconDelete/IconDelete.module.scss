@@ -1,0 +1,25 @@
+@use "../../styles/variables" as v;
+
+.iconDelete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // El color del texto/icono hereda la variable del tema
+  color: var(--theme-text);
+
+  // Tamaño del área de clic
+  width: v.size(3); // 24px para mantener consistencia visual
+  height: v.size(3);
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  // Si dentro hay un SVG o texto
+  font-size: v.size(2); // 16px para el ícono en sí
+}

@@ -1,0 +1,64 @@
+@use "../../styles/variables" as v;
+
+.themeToggle {
+  // --- Layout y Espaciado ---
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 15px;
+  margin-top: 20px;
+
+  // Padding
+  padding: v.size(1) v.size(2);
+
+  // --- Tipografía ---
+  font-family: "Roboto", sans-serif;
+  font-size: v.size(2.5); // Ligeramente más pequeño que el button principal
+  font-weight: 600;
+
+  // --- Estética Base ---
+  border: 2px solid transparent;
+  cursor: pointer;
+  border-radius: map-get(v.$border-radius, "base");
+  transition: all 0.3s ease;
+
+  // ==========================================
+  // LÓGICA DE TEMAS
+  // ==========================================
+
+  // 1. ESTADO NORMAL (TEMA CLARO)
+  background-color: v.color("negro");
+  color: v.color("blanco");
+  border-color: v.color("negro");
+
+  // 2. ESTADO TEMA OSCURO
+  :global([data-theme="dark"]) & {
+    background-color: v.color("blanco");
+    color: v.color("negro");
+    border-color: v.color("blanco");
+  }
+
+  // ==========================================
+  // ESTADOS DE INTERACCIÓN
+  // ==========================================
+
+  &:hover {
+    opacity: 0.85;
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+    :global([data-theme="dark"]) & {
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: v.color("negro");
+  }
+}

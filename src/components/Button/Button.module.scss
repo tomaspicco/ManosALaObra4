@@ -1,0 +1,59 @@
+@use "../../styles/variables" as v;
+
+.button {
+  // --- Layout y Espaciado ---
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // Padding: 8px vertical, 16px horizontal
+  padding: v.size(1) v.size(2);
+
+  // --- Tipografía ---
+  font-family: "Roboto", sans-serif;
+  font-size: v.size(3); // 24px
+  font-weight: 500;
+  line-height: 0.9;
+
+  // --- Estética Base ---
+  border: none;
+  cursor: pointer;
+  border-radius: map-get(v.$border-radius, "base");
+  transition: all 0.2s ease;
+
+  // ==========================================
+  // LÓGICA DE TEMAS (Aquí está la magia)
+  // ==========================================
+
+  // 1. ESTADO NORMAL (TEMA CLARO)
+  // Por defecto, fondo negro y texto blanco
+  background-color: transparent;
+  color: v.color("negro");
+  border: 1px solid black;
+
+  // 2. ESTADO TEMA OSCURO
+  // Cuando la app está en modo oscuro, invertimos los colores
+  :global([data-theme="dark"]) & {
+    color: v.color("blanco");
+    border: 1px solid white;
+  }
+
+  // ==========================================
+  // ESTADOS DE INTERACCIÓN (Hover/Active)
+  // ==========================================
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px); // Pequeña elevación
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}

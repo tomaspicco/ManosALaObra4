@@ -1,0 +1,38 @@
+// Importamos tus variables (ajusta la ruta si es necesario)
+@use "./styles/variables" as v;
+
+:root {
+  --theme-text: #{v.color("negro")};
+  --theme-bg: #{v.color("blanco")};
+  --theme-border: #{v.color("negro-10")}; // Un gris suave para bordes
+
+  --theme-check-bg: #{v.color("negro")};
+  --theme-check-tick: #{v.color("blanco")};
+}
+
+// MODO OSCURO
+// El ThemeContext agrega este atributo al <html>
+[data-theme="dark"] {
+  --theme-text: #{v.color("blanco")};
+  --theme-bg: #{v.color("negro")};
+  --theme-border: #{v.color("blanco-20")}; // Blanco translúcido para bordes
+
+  --theme-check-bg: #{v.color("blanco")};
+  --theme-check-tick: #{v.color("negro")};
+}
+
+// =========================================
+// ESTILOS BASE
+// =========================================
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif; // Asegúrate de tener la fuente cargada
+
+  // Usamos las variables para que el body cambie de color automáticamente
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+
+  // Transición suave al cambiar de tema
+  transition: background-color 0.5s ease, color 0.3s ease;
+}

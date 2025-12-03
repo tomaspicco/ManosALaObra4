@@ -1,0 +1,41 @@
+@use "../../styles/variables" as v;
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+
+  // Tamaño 24px (Key: 3)
+  width: v.size(3);
+  height: v.size(3);
+
+  // Borde
+  border: 2px solid var(--theme-border);
+  border-radius: map-get(v.$border-radius, "base");
+  background-color: transparent;
+
+  // Flex para centrar el tick
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+
+  // Separación con el texto (manejado aquí o en el padre, pero el input no tiene margen por defecto)
+  transition: all 0.2s ease-in-out;
+
+  &:checked {
+    background-color: var(--theme-check-bg);
+  }
+
+  // El "tick" visual
+  &:checked::after {
+    content: "";
+    // Un tick proporcional (aprox la mitad del tamaño)
+    width: v.size(1.5); // 12px
+    height: v.size(0.75); // 6px
+
+    border-left: 2px solid var(--theme-check-tick);
+    border-bottom: 2px solid var(--theme-check-tick);
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
+}

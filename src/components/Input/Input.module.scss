@@ -1,0 +1,38 @@
+@use "../../styles/variables" as v;
+
+.input {
+  // Reset de estilos base
+  border: none;
+  background-color: transparent !important;
+  outline: none; // Opcional: quita el borde azul por defecto al hacer click
+
+  // Tipografía
+  font-family: "Roboto", sans-serif;
+  font-size: v.size(3); // 24px (según tu grid de 8px)
+
+  // Ancho completo por defecto (ajustable)
+  width: 100%;
+
+  // Placeholder (opcional, para que se vea bien si el fondo es oscuro)
+  &::placeholder {
+    opacity: 0.5; // Hereda el color del input con opacidad
+  }
+
+  // --- Temas ---
+
+  // Opción 1: Tema Claro (Texto Negro)
+  &.light {
+    color: v.color("negro");
+    &::placeholder {
+      color: v.color("negro-50");
+    }
+  }
+
+  // Opción 2: Tema Oscuro (Texto Blanco)
+  &.dark {
+    color: v.color("blanco");
+    &::placeholder {
+      color: v.color("blanco-50");
+    }
+  }
+}

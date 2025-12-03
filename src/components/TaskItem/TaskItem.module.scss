@@ -1,0 +1,77 @@
+@use "../../styles/variables" as v;
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%; // Base
+  border-radius: 4px;
+
+  // --- RESPONSIVE: ANCHO Y POSICIÓN ---
+  // En pantallas grandes, limitamos el ancho para que coincida con tu TaskForm
+  max-width: 800px;
+  margin: 20px auto 0 auto; // Centrado horizontalmente (auto a los lados)
+
+  // En celulares (menos de 768px), que ocupe casi toda la pantalla
+  @media (max-width: 768px) {
+    width: 95%;
+    margin-top: 10px; // Menos separación superior en móvil
+  }
+
+  // Padding base
+  padding: v.size(1);
+  box-sizing: border-box;
+
+  // --- ADAPTACIÓN AL TEMA (FONDO) ---
+  background-color: #{v.color("negro-10")};
+
+  :global([data-theme="dark"]) & {
+    background-color: #{v.color("blanco-20")};
+    border-color: transparent;
+  }
+
+  border-bottom: 1px solid var(--theme-border);
+
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.5s ease;
+}
+
+.text {
+  font-family: "Roboto", sans-serif;
+
+  // --- RESPONSIVE: FUENTE ---
+  font-size: v.size(3); // Escritorio: 24px
+
+  // Celular: Bajamos a 18px (o v.size(2) si es 16px) para que entre más texto
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  color: var(--theme-text);
+  margin-left: v.size(1);
+  flex-grow: 1;
+  text-align: left;
+  line-height: 1.2; // Un poco más de aire para lectura en móvil
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  transition: color 0.5s ease;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: v.size(1);
+
+  // Opcional: En móviles muy pequeños, reducir el gap entre botones
+  @media (max-width: 480px) {
+    gap: 4px;
+  }
+}

@@ -1,0 +1,89 @@
+// src/styles/_variables.scss
+
+// IMPORTANTE: Importamos los módulos nativos de Sass
+@use "sass:map";
+@use "sass:meta";
+
+// 1. CONFIGURACIÓN BASE
+$base-grid: 8px;
+
+// 2. MAPA DE TAMAÑOS
+$sizes: (
+  0: 0,
+  "half": $base-grid * 0.5,
+  // 4px
+  1: $base-grid * 1,
+  // 8px
+  2: $base-grid * 2,
+  // 16px
+  3: $base-grid * 3,
+  // 24px
+  4: $base-grid * 4,
+  // 32px
+  5: $base-grid * 5,
+  // 40px
+  6: $base-grid * 6,
+  // 48px
+  8: $base-grid * 8,
+  // 64px
+  10: $base-grid * 10,
+  // 80px
+  12: $base-grid * 12 // 96px,
+);
+
+// 3. MAPA DE COLORES
+$base-black: #222222;
+$base-white: #ffffff;
+
+$colors: (
+  "negro": $base-black,
+  "negro-50": rgba($base-black, 0.5),
+  "negro-10": rgba($base-black, 0.1),
+  "blanco": $base-white,
+  "blanco-50": rgba($base-white, 0.5),
+  "blanco-20": rgba($base-white, 0.2),
+  // Agregamos el color AZUL para solucionar el warning
+  "azul": #007bff,
+);
+
+// 4. BORDES
+$border-radius: (
+  "base": 4px,
+  "round": 50%,
+  "none": 0,
+);
+
+$border-width: 1px;
+
+// ==========================================
+// 5. FUNCIONES (SINTAXIS MODERNA)
+// ==========================================
+
+// Función size() corregida con map.has-key y meta.type-of
+@function size($key) {
+  @if map.has-key($sizes, $key) {
+    @return map.get($sizes, $key);
+  }
+  @if meta.type-of($key) == "number" {
+    @return $key * $base-grid;
+  }
+  @warn "El tamaño '#{$key}' no existe en la configuración.";
+  @return $key;
+}
+
+// Función color() corregida
+@function color($key) {
+  @if map.has-key($colors, $key) {
+    @return map.get($colors, $key);
+  }
+  @warn "El color '#{$key}' no existe en la paleta.";
+  @return null;
+}
+
+// Función radius() (Úsala en lugar de map-get en tus componentes)
+@function radius($key) {
+  @if map.has-key($border-radius, $key) {
+    @return map.get($border-radius, $key);
+  }
+  @return 0;
+}
